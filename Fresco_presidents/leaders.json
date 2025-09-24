@@ -1,0 +1,319 @@
+{
+    "presidents": [
+        {
+            "name": "Charles de Gaulle",
+            "start": "1959-01-08",
+            "end": "1969-04-28",
+            "color": "#3F51B5",
+            "notes": "Il était très grand et aimait beaucoup le fromage hihihihihihihihi lorem ipsum pouzerf pzofpozefg zetg zdg zeg pouzpe tzetg p",
+            "intitule": "Président"
+        },
+        {
+            "name": "Alain Poher",
+            "start": "1969-04-28",
+            "end": "1969-06-20",
+            "color": "#9E9E9E",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Georges Pompidou",
+            "start": "1969-06-20",
+            "end": "1974-04-02",
+            "color": "#E91E63",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Alain Poher",
+            "start": "1974-04-02",
+            "end": "1974-05-27",
+            "color": "#9E9E9E",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Valéry Giscard d'Estaing",
+            "start": "1974-05-27",
+            "end": "1981-05-21",
+            "color": "#FF9800",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "François Mitterrand",
+            "start": "1981-05-21",
+            "end": "1995-05-17",
+            "color": "#4CAF50",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Jacques Chirac",
+            "start": "1995-05-17",
+            "end": "2007-05-16",
+            "color": "#9C27B0",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Nicolas Sarkozy",
+            "start": "2007-05-16",
+            "end": "2012-05-15",
+            "color": "#607D8B",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "François Hollande",
+            "start": "2012-05-15",
+            "end": "2017-05-14",
+            "color": "#795548",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Emmanuel Macron",
+            "start": "2017-05-14",
+            "end": "2025-09-24",
+            "color": "#00BCD4",
+            "notes": "",
+            "intitule": "Président"
+        }
+        
+    ],
+    "primeMinisters": [
+        {
+            "name": "Michel Debré",
+            "start": "1959-01-08",
+            "end": "1962-04-14",
+            "color": "#5C6BC0",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Georges Pompidou",
+            "start": "1962-04-14",
+            "end": "1968-07-10",
+            "color": "#5C6BC0",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Maurice Couve de Murville",
+            "start": "1968-07-10",
+            "end": "1969-06-20",
+            "color": "#5C6BC0",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jacques Chaban-Delmas",
+            "start": "1969-06-20",
+            "end": "1972-07-05",
+            "color": "#EC407A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Pierre Messmer",
+            "start": "1972-07-05",
+            "end": "1974-05-27",
+            "color": "#EC407A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jacques Chirac (1)",
+            "start": "1974-05-27",
+            "end": "1976-08-25",
+            "color": "#FFA726",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Raymond Barre",
+            "start": "1976-08-25",
+            "end": "1981-05-21",
+            "color": "#FFA726",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Pierre Mauroy",
+            "start": "1981-05-21",
+            "end": "1984-07-17",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Laurent Fabius",
+            "start": "1984-07-17",
+            "end": "1986-03-20",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jacques Chirac (2)",
+            "start": "1986-03-20",
+            "end": "1988-05-10",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Michel Rocard",
+            "start": "1988-05-10",
+            "end": "1991-05-15",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Édith Cresson",
+            "start": "1991-05-15",
+            "end": "1992-04-02",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Pierre Bérégovoy",
+            "start": "1992-04-02",
+            "end": "1993-03-29",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Édouard Balladur",
+            "start": "1993-03-29",
+            "end": "1995-05-17",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Alain Juppé",
+            "start": "1995-05-17",
+            "end": "1997-06-02",
+            "color": "#AB47BC",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Lionel Jospin",
+            "start": "1997-06-02",
+            "end": "2002-05-06",
+            "color": "#AB47BC",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jean-Pierre Raffarin",
+            "start": "2002-05-06",
+            "end": "2005-05-31",
+            "color": "#AB47BC",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Dominique de Villepin",
+            "start": "2005-05-31",
+            "end": "2007-05-17",
+            "color": "#AB47BC",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "François Fillon",
+            "start": "2007-05-17",
+            "end": "2012-05-15",
+            "color": "#78909C",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jean-Marc Ayrault",
+            "start": "2012-05-15",
+            "end": "2014-03-31",
+            "color": "#8D6E63",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Manuel Valls",
+            "start": "2014-03-31",
+            "end": "2016-12-06",
+            "color": "#8D6E63",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Bernard Cazeneuve",
+            "start": "2016-12-06",
+            "end": "2017-05-15",
+            "color": "#8D6E63",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Édouard Philippe",
+            "start": "2017-05-15",
+            "end": "2020-07-03",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jean Castex",
+            "start": "2020-07-03",
+            "end": "2022-05-16",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Élisabeth Borne",
+            "start": "2022-05-16",
+            "end": "2024-01-09",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Gabriel Attal",
+            "start": "2024-01-09",
+            "end": "2024-09-05",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Michel Barnier",
+            "start": "2024-09-05",
+            "end": "2024-12-13",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "François Bayrou",
+            "start": "2024-12-13",
+            "end": "2025-09-09",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Sébastien Lecornu",
+            "start": "2025-09-09",
+            "end": "en cours",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        }
+    ]
+}

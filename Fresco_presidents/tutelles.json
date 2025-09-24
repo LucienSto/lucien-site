@@ -1,0 +1,340 @@
+{
+  "tutelles": [
+    {
+      "name": "Jacques Chaban-Delmas",
+      "intitule": "Premier ministre",
+      "start": "1971-01-07",
+      "end": "1972-07-05",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Pierre Messmer",
+      "intitule": "Premier ministre",
+      "start": "1972-07-06",
+      "end": "1973-03-28",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Robert Poujade",
+      "intitule": "Ministre de la Protection de la nature et de l'Environnement",
+      "start": "1973-04-05",
+      "end": "1974-02-27",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Alain Peyrefitte",
+      "intitule": "Ministre des Affaires culturelles et de l'Environnement",
+      "start": "1974-03-01",
+      "end": "1974-05-27",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "André Jarrot",
+      "intitule": "Ministre de la Qualité de la vie",
+      "start": "1974-06-08",
+      "end": "1976-01-12",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "André Fosset",
+      "intitule": "Ministre de la Qualité de la vie",
+      "start": "1976-01-12",
+      "end": "1976-08-25",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Vincent Ansquer",
+      "intitule": "Ministre de la Qualité de la vie",
+      "start": "1976-08-27",
+      "end": "1977-03-29",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel d'Ornano",
+      "intitule": "Ministre de la Culture et de l'Environnement",
+      "start": "1977-03-30",
+      "end": "1978-04-05",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel d'Ornano",
+      "intitule": "Ministre de l'Environnement et du Cadre de vie",
+      "start": "1978-04-06",
+      "end": "1981-05-22",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel Crépeau",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1981-05-22",
+      "end": "1983-03-22",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Pierre Mauroy",
+      "intitule": "Premier ministre",
+      "start": "1983-03-24",
+      "end": "1984-07-23",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Huguette Bouchardeau",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1984-07-19",
+      "end": "1986-03-20",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Pierre Méhaignerie",
+      "intitule": "Ministre de l'Équipement, du Logement et de l'Aménagement du territoire",
+      "start": "1986-03-20",
+      "end": "1988-05-12",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel Rocard",
+      "intitule": "Premier ministre",
+      "start": "1988-05-13",
+      "end": "1991-05-16",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Brice Lalonde",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1991-05-16",
+      "end": "1992-04-04",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Ségolène Royal",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1992-04-04",
+      "end": "1993-03-30",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel Barnier",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1993-03-30",
+      "end": "1995-05-18",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Corinne Lepage",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1995-05-18",
+      "end": "1997-06-02",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Dominique Voynet",
+      "intitule": "Ministre de l'Aménagement du territoire et de l'Environnement",
+      "start": "1997-06-04",
+      "end": "2001-07-10",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Yves Cochet",
+      "intitule": "Ministre de l'Aménagement du territoire et de l'Environnement",
+      "start": "2001-07-10",
+      "end": "2002-05-06",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Roselyne Bachelot",
+      "intitule": "Ministre de l'Écologie et du Développement durable (MEDD)",
+      "start": "2002-05-07",
+      "end": "2004-03-30",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Serge Lepeltier",
+      "intitule": "Ministre de l'Écologie et du Développement durable (MEDD)",
+      "start": "2004-03-31",
+      "end": "2005-05-31",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Nelly Olin",
+      "intitule": "Ministre de l'Écologie et du Développement durable (MEDD)",
+      "start": "2005-06-02",
+      "end": "2007-05-15",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Alain Juppé",
+      "intitule": "Ministre d'État, Ministre de l'Écologie, du Développement et de l'Aménagement durables (MEDAD)",
+      "start": "2007-05-18",
+      "end": "2007-06-18",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Jean-Louis Borloo",
+      "intitule": "Ministre d'État, Ministre de l'Écologie, du Développement et de l'Aménagement durables (MEDAD)",
+      "start": "2007-06-19",
+      "end": "2008-03-18",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Jean-Louis Borloo",
+      "intitule": "Ministre d'État, Ministre de l'Écologie, de l'Énergie, du Développement durable et de l'Aménagement du territoire (MEEDDAT)",
+      "start": "2008-03-18",
+      "end": "2009-06-23",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Jean-Louis Borloo",
+      "intitule": "Ministre d'État, Ministre de l'Écologie, de l'Énergie, du Développement durable et de la Mer, en charge des Technologies vertes et des Négociations sur le climat (MEEDDM)",
+      "start": "2009-06-23",
+      "end": "2010-11-13",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Nathalie Kosciusko-Morizet",
+      "intitule": "Ministre de l'Écologie, du Développement durable, des Transports et du Logement (MEDDTL)",
+      "start": "2010-11-14",
+      "end": "2012-02-22",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "François Fillon",
+      "intitule": "Premier ministre, ministre de l'Écologie, du Développement durable, des Transports et du Logement",
+      "start": "2012-02-22",
+      "end": "2012-05-10",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Nicole Bricq",
+      "intitule": "Ministre de l'Écologie, du Développement durable et de l'Énergie (MEDDE)",
+      "start": "2012-05-16",
+      "end": "2012-06-18",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Delphine Batho",
+      "intitule": "Ministre de l'Écologie, du Développement durable et de l'Énergie (MEDDE)",
+      "start": "2012-06-21",
+      "end": "2013-07-02",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Philippe Martin",
+      "intitule": "Ministre de l'Écologie, du Développement durable et de l'Énergie (MEDDE)",
+      "start": "2013-07-02",
+      "end": "2014-03-31",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Ségolène Royal",
+      "intitule": "Ministre de l'Écologie, du Développement durable et de l'Énergie (MEDDE)",
+      "start": "2014-04-02",
+      "end": "2016-02-11",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Ségolène Royal",
+      "intitule": "Ministre de l'Environnement, de l'Énergie et de la Mer, chargée des Relations internationales sur le climat (MEEM)",
+      "start": "2016-02-11",
+      "end": "2017-05-15",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Nicolas Hulot",
+      "intitule": "Ministre d'État, ministre de la Transition écologique et solidaire",
+      "start": "2017-05-17",
+      "end": "2018-09-04",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "François de Rugy",
+      "intitule": "Ministre d'État, ministre de la Transition écologique et solidaire",
+      "start": "2018-09-04",
+      "end": "2019-07-16",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Élisabeth Borne",
+      "intitule": "Ministre de la Transition écologique et solidaire",
+      "start": "2019-07-16",
+      "end": "2020-07-03",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Barbara Pompili",
+      "intitule": "Ministre de la Transition écologique",
+      "start": "2020-07-06",
+      "end": "2022-05-20",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Amélie de Montchalin",
+      "intitule": "Ministre de la Transition écologique et de la Cohésion des territoires",
+      "start": "2022-05-20",
+      "end": "2022-07-04",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Christophe Béchu",
+      "intitule": "Ministre de la Transition écologique et de la Cohésion des territoires",
+      "start": "2022-07-04",
+      "end": "2024-09-21",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Agnès Pannier-Runacher",
+      "intitule": "Ministre de la Transition écologique, de l'Énergie, du Climat et de la Prévention des risques",
+      "start": "2024-09-21",
+      "end": "2024-12-23",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Agnès Pannier-Runacher",
+      "intitule": "Ministre de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche",
+      "start": "2024-12-23",
+      "end": "en cours",
+      "color": "#388E3C",
+      "notes": ""
+    }
+  ]
+}
