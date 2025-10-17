@@ -1,0 +1,1346 @@
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    height: auto;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: 100vh;
+    overflow: auto;
+}
+.date-ruler {
+    width: 140px; /* was 160px */
+    background: #eaeaea;
+    padding: 0 10px;
+    overflow-y: auto;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+    min-height: 100vh;
+}
+.ruler-axis {
+    position: absolute;
+    left: 20px; /* adjust if needed */
+    top: 0;
+    width: 2px;
+    background: #bbb;
+    z-index: 0;
+}
+.graduation {
+    position: absolute;
+    left: 100px; /* adjust for new width */
+    width: 18px;
+    height: 1px;
+    background: #888;
+    z-index: 1;
+}
+.month-label {
+    position: absolute;
+    left: 30px; /* adjust for new width */
+    font-size: 10px;
+    color: #444;
+    height: 16px;
+    line-height: 16px;
+    z-index: 2;
+}
+.year-label {
+    position: absolute;
+    left: 60px; /* adjust for new width */
+    font-size: 14px;
+    font-weight: bold;
+    color: #222;
+    height: 18px;
+    line-height: 18px;
+    z-index: 2;
+}
+.year-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #bbb;
+    z-index: 3;
+    opacity: 0.5;
+}
+.fresco-content {
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+}
+.show-section {
+    display: inline-block;
+    margin: 8px;
+    padding: 0 0 10 0;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresco des présidents et ministres de l'Environnement</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+<body>
+
+<header style="overflow: hidden; border-bottom: 1px solid #ccc; background: #fff;">
+    <h1 style="margin: 16px; font-size: 24px; color: #333;">Fresco des présidents et ministres de l'Environnement (depuis 1958)</h1>
+    <div class="show-section"><b>Montrer : </b></div>
+    <div class="show-section"><input type="checkbox" id="president-show-button" name="column" value="show" checked /> Présidents </div>
+    <div class="show-section"><input type="checkbox" id="pm-show-button" name="column" value="show" checked /> Premier·es ministres </div>
+    <div class="show-section"><input type="checkbox" id="tutelle-show-button" name="column" value="show" checked /> Ministres de tutelle </div>
+    <div class="show-section"><input type="checkbox" id="delegue-show-button" name="column" value="show" checked /> Ministres délégué·e·s ou secrétaires d'État </div>
+</header>
+
+
+<div class="container">
+    <div class="date-ruler" id="dateRuler"></div>
+    <div class="fresco-content">
+        <!-- Fresco content goes here -->
+    </div>
+</div>
+
+<dialog id="infoDialog">
+  <h2 id="dialogName"></h2>
+  <p><strong>Intitulé :</strong> <span id="dialogIntitule"></span></p>
+  <p><strong>Dates :</strong> <span id="dialogDates"></span></p>
+  <p><strong>Notes :</strong></p>
+  <p id="dialogNotes"></p>
+  <button onclick="document.getElementById('infoDialog').close()">Fermer</button>
+</dialog>
+
+
+
+//json data 
+<script id="data_leaders" type="application/json">
+    {
+    "presidents": [
+        {
+            "name": "Charles de Gaulle",
+            "start": "1959-01-08",
+            "end": "1969-04-28",
+            "color": "#3F51B5",
+            "notes": "Il était très grand.",
+            "intitule": "Président"
+        },
+        {
+            "name": "Alain Poher",
+            "start": "1969-04-28",
+            "end": "1969-06-20",
+            "color": "#9E9E9E",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Georges Pompidou",
+            "start": "1969-06-20",
+            "end": "1974-04-02",
+            "color": "#E91E63",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Alain Poher",
+            "start": "1974-04-02",
+            "end": "1974-05-27",
+            "color": "#9E9E9E",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Valéry Giscard d'Estaing",
+            "start": "1974-05-27",
+            "end": "1981-05-21",
+            "color": "#FF9800",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "François Mitterrand",
+            "start": "1981-05-21",
+            "end": "1995-05-17",
+            "color": "#4CAF50",
+            "notes": "",
+            "intitule": "Président"
+        },
+        {
+            "name": "Jacques Chirac",
+            "start": "1995-05-17",
+            "end": "2007-05-16",
+            "color": "#9C27B0",
+            "notes": "Il aimait les pommes.",
+            "intitule": "Président"
+        },
+        {
+            "name": "Nicolas Sarkozy",
+            "start": "2007-05-16",
+            "end": "2012-05-15",
+            "color": "#607D8B",
+            "notes": "5 ans de prison mdr",
+            "intitule": "Président"
+        },
+        {
+            "name": "François Hollande",
+            "start": "2012-05-15",
+            "end": "2017-05-14",
+            "color": "#795548",
+            "notes": "Notre flamby national",
+            "intitule": "Président"
+        },
+        {
+            "name": "Emmanuel Macron",
+            "start": "2017-05-14",
+            "end": "2025-09-24",
+            "color": "#00BCD4",
+            "notes": "Micron explosion",
+            "intitule": "Président"
+        }
+        
+    ],
+    "primeMinisters": [
+        {
+            "name": "Michel Debré",
+            "start": "1959-01-08",
+            "end": "1962-04-14",
+            "color": "#5C6BC0",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Georges Pompidou",
+            "start": "1962-04-14",
+            "end": "1968-07-10",
+            "color": "#5C6BC0",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Maurice Couve de Murville",
+            "start": "1968-07-10",
+            "end": "1969-06-20",
+            "color": "#5C6BC0",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jacques Chaban-Delmas",
+            "start": "1969-06-20",
+            "end": "1972-07-05",
+            "color": "#EC407A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Pierre Messmer",
+            "start": "1972-07-05",
+            "end": "1974-05-27",
+            "color": "#EC407A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jacques Chirac (1)",
+            "start": "1974-05-27",
+            "end": "1976-08-25",
+            "color": "#FFA726",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Raymond Barre",
+            "start": "1976-08-25",
+            "end": "1981-05-21",
+            "color": "#FFA726",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Pierre Mauroy",
+            "start": "1981-05-21",
+            "end": "1984-07-17",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Laurent Fabius",
+            "start": "1984-07-17",
+            "end": "1986-03-20",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jacques Chirac (2)",
+            "start": "1986-03-20",
+            "end": "1988-05-10",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Michel Rocard",
+            "start": "1988-05-10",
+            "end": "1991-05-15",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Édith Cresson",
+            "start": "1991-05-15",
+            "end": "1992-04-02",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Pierre Bérégovoy",
+            "start": "1992-04-02",
+            "end": "1993-03-29",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Édouard Balladur",
+            "start": "1993-03-29",
+            "end": "1995-05-17",
+            "color": "#66BB6A",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Alain Juppé",
+            "start": "1995-05-17",
+            "end": "1997-06-02",
+            "color": "#AB47BC",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Lionel Jospin",
+            "start": "1997-06-02",
+            "end": "2002-05-06",
+            "color": "#AB47BC",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jean-Pierre Raffarin",
+            "start": "2002-05-06",
+            "end": "2005-05-31",
+            "color": "#AB47BC",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Dominique de Villepin",
+            "start": "2005-05-31",
+            "end": "2007-05-17",
+            "color": "#AB47BC",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "François Fillon",
+            "start": "2007-05-17",
+            "end": "2012-05-15",
+            "color": "#78909C",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jean-Marc Ayrault",
+            "start": "2012-05-15",
+            "end": "2014-03-31",
+            "color": "#8D6E63",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Manuel Valls",
+            "start": "2014-03-31",
+            "end": "2016-12-06",
+            "color": "#8D6E63",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Bernard Cazeneuve",
+            "start": "2016-12-06",
+            "end": "2017-05-15",
+            "color": "#8D6E63",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Édouard Philippe",
+            "start": "2017-05-15",
+            "end": "2020-07-03",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Jean Castex",
+            "start": "2020-07-03",
+            "end": "2022-05-16",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Élisabeth Borne",
+            "start": "2022-05-16",
+            "end": "2024-01-09",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Gabriel Attal",
+            "start": "2024-01-09",
+            "end": "2024-09-05",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Michel Barnier",
+            "start": "2024-09-05",
+            "end": "2024-12-13",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "François Bayrou",
+            "start": "2024-12-13",
+            "end": "2025-09-09",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        },
+        {
+            "name": "Sébastien Lecornu",
+            "start": "2025-09-09",
+            "end": "en cours",
+            "color": "#26C6DA",
+            "notes": "",
+            "intitule": "Premier·e ministre"
+        }
+    ]
+    }
+</script>
+
+<script id="data_tutelles" type="application/json">
+    {
+  "tutelles": [
+    {
+      "name": "Jacques Chaban-Delmas",
+      "intitule": "Premier ministre",
+      "start": "1971-01-07",
+      "end": "1972-07-05",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Pierre Messmer",
+      "intitule": "Premier ministre",
+      "start": "1972-07-06",
+      "end": "1973-03-28",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Robert Poujade",
+      "intitule": "Ministre de la Protection de la nature et de l'Environnement",
+      "start": "1973-04-05",
+      "end": "1974-02-27",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Alain Peyrefitte",
+      "intitule": "Ministre des Affaires culturelles et de l'Environnement",
+      "start": "1974-03-01",
+      "end": "1974-05-27",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "André Jarrot",
+      "intitule": "Ministre de la Qualité de la vie",
+      "start": "1974-06-08",
+      "end": "1976-01-12",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "André Fosset",
+      "intitule": "Ministre de la Qualité de la vie",
+      "start": "1976-01-12",
+      "end": "1976-08-25",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Vincent Ansquer",
+      "intitule": "Ministre de la Qualité de la vie",
+      "start": "1976-08-27",
+      "end": "1977-03-29",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel d'Ornano",
+      "intitule": "Ministre de la Culture et de l'Environnement",
+      "start": "1977-03-30",
+      "end": "1978-04-05",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel d'Ornano",
+      "intitule": "Ministre de l'Environnement et du Cadre de vie",
+      "start": "1978-04-06",
+      "end": "1981-05-22",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel Crépeau",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1981-05-22",
+      "end": "1983-03-22",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Pierre Mauroy",
+      "intitule": "Premier ministre",
+      "start": "1983-03-24",
+      "end": "1984-07-23",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Huguette Bouchardeau",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1984-07-19",
+      "end": "1986-03-20",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Pierre Méhaignerie",
+      "intitule": "Ministre de l'Équipement, du Logement et de l'Aménagement du territoire",
+      "start": "1986-03-20",
+      "end": "1988-05-12",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel Rocard",
+      "intitule": "Premier ministre",
+      "start": "1988-05-13",
+      "end": "1991-05-16",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Brice Lalonde",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1991-05-16",
+      "end": "1992-04-04",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Ségolène Royal",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1992-04-04",
+      "end": "1993-03-30",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Michel Barnier",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1993-03-30",
+      "end": "1995-05-18",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Corinne Lepage",
+      "intitule": "Ministre de l'Environnement",
+      "start": "1995-05-18",
+      "end": "1997-06-02",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Dominique Voynet",
+      "intitule": "Ministre de l'Aménagement du territoire et de l'Environnement",
+      "start": "1997-06-04",
+      "end": "2001-07-10",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Yves Cochet",
+      "intitule": "Ministre de l'Aménagement du territoire et de l'Environnement",
+      "start": "2001-07-10",
+      "end": "2002-05-06",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Roselyne Bachelot",
+      "intitule": "Ministre de l'Écologie et du Développement durable (MEDD)",
+      "start": "2002-05-07",
+      "end": "2004-03-30",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Serge Lepeltier",
+      "intitule": "Ministre de l'Écologie et du Développement durable (MEDD)",
+      "start": "2004-03-31",
+      "end": "2005-05-31",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Nelly Olin",
+      "intitule": "Ministre de l'Écologie et du Développement durable (MEDD)",
+      "start": "2005-06-02",
+      "end": "2007-05-15",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Alain Juppé",
+      "intitule": "Ministre d'État, Ministre de l'Écologie, du Développement et de l'Aménagement durables (MEDAD)",
+      "start": "2007-05-18",
+      "end": "2007-06-18",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Jean-Louis Borloo",
+      "intitule": "Ministre d'État, Ministre de l'Écologie, du Développement et de l'Aménagement durables (MEDAD)",
+      "start": "2007-06-19",
+      "end": "2008-03-18",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Jean-Louis Borloo",
+      "intitule": "Ministre d'État, Ministre de l'Écologie, de l'Énergie, du Développement durable et de l'Aménagement du territoire (MEEDDAT)",
+      "start": "2008-03-18",
+      "end": "2009-06-23",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Jean-Louis Borloo",
+      "intitule": "Ministre d'État, Ministre de l'Écologie, de l'Énergie, du Développement durable et de la Mer, en charge des Technologies vertes et des Négociations sur le climat (MEEDDM)",
+      "start": "2009-06-23",
+      "end": "2010-11-13",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Nathalie Kosciusko-Morizet",
+      "intitule": "Ministre de l'Écologie, du Développement durable, des Transports et du Logement (MEDDTL)",
+      "start": "2010-11-14",
+      "end": "2012-02-22",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "François Fillon",
+      "intitule": "Premier ministre, ministre de l'Écologie, du Développement durable, des Transports et du Logement",
+      "start": "2012-02-22",
+      "end": "2012-05-10",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Nicole Bricq",
+      "intitule": "Ministre de l'Écologie, du Développement durable et de l'Énergie (MEDDE)",
+      "start": "2012-05-16",
+      "end": "2012-06-18",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Delphine Batho",
+      "intitule": "Ministre de l'Écologie, du Développement durable et de l'Énergie (MEDDE)",
+      "start": "2012-06-21",
+      "end": "2013-07-02",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Philippe Martin",
+      "intitule": "Ministre de l'Écologie, du Développement durable et de l'Énergie (MEDDE)",
+      "start": "2013-07-02",
+      "end": "2014-03-31",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Ségolène Royal",
+      "intitule": "Ministre de l'Écologie, du Développement durable et de l'Énergie (MEDDE)",
+      "start": "2014-04-02",
+      "end": "2016-02-11",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Ségolène Royal",
+      "intitule": "Ministre de l'Environnement, de l'Énergie et de la Mer, chargée des Relations internationales sur le climat (MEEM)",
+      "start": "2016-02-11",
+      "end": "2017-05-15",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Nicolas Hulot",
+      "intitule": "Ministre d'État, ministre de la Transition écologique et solidaire",
+      "start": "2017-05-17",
+      "end": "2018-09-04",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "François de Rugy",
+      "intitule": "Ministre d'État, ministre de la Transition écologique et solidaire",
+      "start": "2018-09-04",
+      "end": "2019-07-16",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Élisabeth Borne",
+      "intitule": "Ministre de la Transition écologique et solidaire",
+      "start": "2019-07-16",
+      "end": "2020-07-03",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Barbara Pompili",
+      "intitule": "Ministre de la Transition écologique",
+      "start": "2020-07-06",
+      "end": "2022-05-20",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Amélie de Montchalin",
+      "intitule": "Ministre de la Transition écologique et de la Cohésion des territoires",
+      "start": "2022-05-20",
+      "end": "2022-07-04",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Christophe Béchu",
+      "intitule": "Ministre de la Transition écologique et de la Cohésion des territoires",
+      "start": "2022-07-04",
+      "end": "2024-09-21",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Agnès Pannier-Runacher",
+      "intitule": "Ministre de la Transition écologique, de l'Énergie, du Climat et de la Prévention des risques",
+      "start": "2024-09-21",
+      "end": "2024-12-23",
+      "color": "#388E3C",
+      "notes": ""
+    },
+    {
+      "name": "Agnès Pannier-Runacher",
+      "intitule": "Ministre de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche",
+      "start": "2024-12-23",
+      "end": "en cours",
+      "color": "#388E3C",
+      "notes": ""
+    }
+  ]
+}
+</script>
+
+<script id="data_delegues" type="application/json">
+{
+  "deleguesSecretaires": [
+    {
+      "name": "Robert Poujade",
+      "intitule": "Ministre délégué chargé de la Protection de la nature et de l'Environnement",
+      "start": "1971-01-07",
+      "end": "1973-03-28",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Paul Dijoud",
+      "intitule": "Secrétaire d'État chargé de l'Environnement",
+      "start": "1974-03-01",
+      "end": "1974-05-27",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Gabriel Péronnet",
+      "intitule": "Secrétaire d'État chargé de l'Environnement",
+      "start": "1974-06-08",
+      "end": "1974-10-29",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Paul Granet",
+      "intitule": "Secrétaire d'État chargé de l'Environnement",
+      "start": "1976-01-12",
+      "end": "1976-08-25",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "François Delmas",
+      "intitule": "Secrétaire d'État chargé de l'Environnement",
+      "start": "1978-04-06",
+      "end": "1981-05-22",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Alain Bombard",
+      "intitule": "Secrétaire d'État auprès du ministre de l'environnement",
+      "start": "1981-05-22",
+      "end": "1981-06-22",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Huguette Bouchardeau",
+      "intitule": "Secrétaire d'État chargé de l'Environnement et de la Qualité de la vie[5]",
+      "start": "1983-03-24",
+      "end": "1984-07-23",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Alain Carignon",
+      "intitule": "Ministre délégué à l'Environnement",
+      "start": "1986-03-20",
+      "end": "1988-05-12",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Brice Lalonde",
+      "intitule": "Secrétaire d'État chargé de l'environnement",
+      "start": "1988-05-13",
+      "end": "1989-03-29",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Brice Lalonde",
+      "intitule": "Secrétaire d'État chargé de l'environnement et de la prévention des risques technologiques et naturels majeurs",
+      "start": "1989-03-29",
+      "end": "1990-10-02",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Brice Lalonde",
+      "intitule": "Ministre délégué chargé de l'environnement et de la prévention des risques technologiques et naturels majeurs",
+      "start": "1990-10-02",
+      "end": "1991-05-16",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Tokia Saïfi",
+      "intitule": "Secrétaire d'État au Développement durable",
+      "start": "2002-05-07",
+      "end": "2005-05-31",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Nathalie Kosciusko-Morizet",
+      "intitule": "Secrétaire d'État chargée de l'Écologie",
+      "start": "2007-06-19",
+      "end": "2009-01-15",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Chantal Jouanno",
+      "intitule": "Secrétaire d'État chargée de l'Écologie",
+      "start": "2009-01-21",
+      "end": "2010-11-13",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Valérie Létard",
+      "intitule": "Secrétaire d'État chargée des Technologies vertes et des Négociations sur le climat",
+      "start": "2009-06-23",
+      "end": "2010-11-13",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Barbara Pompili",
+      "intitule": "Secrétaire d'État chargée de la Biodiversité",
+      "start": "2016-02-11",
+      "end": "2017-05-15",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Sébastien Lecornu et Brune Poirson",
+      "intitule": "Secrétaires d'État auprès du ministre d'État, ministre de la Transition écologique et solidaire",
+      "start": "2017-06-21",
+      "end": "2018-10-16",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Brune Poirson et Emmanuelle Wargon",
+      "intitule": "Secrétaires d'État auprès du ministre d'État, ministre de la Transition écologique et solidaire",
+      "start": "2018-10-16",
+      "end": "2019-07-16",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Brune Poirson et Emmanuelle Wargon",
+      "intitule": "Secrétaires d'État auprès de la ministre de la Transition écologique et solidaire",
+      "start": "2019-07-16",
+      "end": "2020-07-03",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Bérangère Abba",
+      "intitule": "Secrétaire d'État chargée de la Biodiversité",
+      "start": "2020-07-26",
+      "end": "2022-05-20",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Bérangère Couillard",
+      "intitule": "Secrétaire d'État chargée de l'Écologie",
+      "start": "2022-07-04",
+      "end": "2023-07-20",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Sarah El Haïry",
+      "intitule": "Secrétaire d'État chargée de la Biodiversité",
+      "start": "2023-07-20",
+      "end": "2024-01-11",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Hervé Berville",
+      "intitule": "Secrétaire d'État chargé de la Mer et de la Biodiversité",
+      "start": "2024-02-08",
+      "end": "2024-09-21",
+      "color": "#F44336",
+      "notes": ""
+    },
+    {
+      "name": "Olga Givernet",
+      "intitule": "Ministre délégué chargée de l'Energie",
+      "start": "2024-09-21",
+      "end": "2024-12-23",
+      "color": "#F44336",
+      "notes": ""
+    }
+  ]
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+const startYear = 1958;
+const endYear = new Date().getFullYear()+1;
+const monthNames = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+
+// Height per month in px
+const monthHeight = 14;
+const rulerHeight = ((endYear - startYear + 1) * 12) * monthHeight;
+
+const dateRuler = document.getElementById('dateRuler');
+dateRuler.style.position = 'relative';
+dateRuler.style.height = rulerHeight + 'px';
+
+const axis = document.createElement('div');
+axis.className = 'ruler-axis';
+axis.style.height = rulerHeight + 'px';
+dateRuler.appendChild(axis);
+
+let y = 0;
+for (let year = startYear; year <= endYear; year++) {
+    for (let m = 0; m < 12; m++) {
+        if (year === endYear && m > new Date().getMonth()) break;
+
+        // Graduation line
+        const grad = document.createElement('div');
+        grad.className = 'graduation';
+        grad.style.top = y + 'px';
+        if (m === 0) {
+            grad.style.height = '3px'; // bolder for January
+            grad.style.background = '#222';
+            grad.style.width = '30px';
+        } else {
+            grad.style.height = '1px';
+            grad.style.background = '#888';
+            grad.style.width = '18px';
+        }
+        dateRuler.appendChild(grad);
+
+        // Month label
+        const monthLabel = document.createElement('div');
+        monthLabel.className = 'month-label';
+        monthLabel.style.top = (y - 8) + 'px';
+        monthLabel.textContent = monthNames[m];
+        dateRuler.appendChild(monthLabel);
+
+        // Year label (only on January)
+        if (m === 0) {
+            const yearLabel = document.createElement('div');
+            yearLabel.className = 'year-label';
+            yearLabel.style.top = (y - 8) + 'px';
+            yearLabel.textContent = year;
+            dateRuler.appendChild(yearLabel);
+        }
+        y += monthHeight;
+    }
+}
+
+/**
+ * Helper to get Y position from a date string "YYYY-MM-DD"
+ * Handles partial months by using the day value.
+ */
+function getYPosition(dateStr) {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    // month: 1-based (1=Jan), day: 1-based
+    const monthsSinceStart = (year - startYear) * 12 + (month - 1);
+    // If day is present, add fraction of month
+    let y = monthsSinceStart * monthHeight;
+    if (!isNaN(day)) {
+        // Assume 30.44 as average days per month for smoother placement
+        y += ((day - 1) / 30.44) * monthHeight;
+    }
+    return y;
+}
+
+const frescoContent = document.querySelector('.fresco-content');
+frescoContent.style.position = 'relative';
+frescoContent.style.height = rulerHeight + 'px';
+
+
+
+// Helper to darken a hex color
+function darkenColor(hex, percent) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) hex = hex.split('').map(x => x + x).join('');
+    const num = parseInt(hex, 16);
+    let r = (num >> 16) - Math.round(2.55 * percent);
+    let g = ((num >> 8) & 0x00FF) - Math.round(2.55 * percent);
+    let b = (num & 0x0000FF) - Math.round(2.55 * percent);
+    r = Math.max(0, r); g = Math.max(0, g); b = Math.max(0, b);
+    return '#' + (r << 16 | g << 8 | b).toString(16).padStart(6, '0');
+}
+
+
+
+//Helper to show info dialog
+function openInfoDialog(data) {
+    document.getElementById('dialogName').textContent = data.name;
+    document.getElementById('dialogIntitule').textContent = data.intitule;
+    document.getElementById('dialogDates').textContent = data.start + " → " + data.end;
+    document.getElementById('dialogNotes').textContent = data.notes || "(Aucune note)";
+    
+    document.getElementById('infoDialog').showModal();
+}
+
+// Clear only the columns, not the whole structure
+frescoContent.innerHTML = "";
+
+// Create a wrapper for the columns (flex row)
+const columnsWrapper = document.createElement('div');
+columnsWrapper.style.display = 'flex';
+columnsWrapper.style.flexDirection = 'row';
+
+// Column definitions
+const columns = [
+    { id: 'fresco_column_presidents', label: "Présidents" },
+    { id: 'fresco_column_pm', label: "Premiers ministres" },
+    { id: 'fresco_column_tutelle', label: "Ministre de tutelle" },
+    { id: 'fresco_column_delegue', label: "Ministre délégué ou secrétaire d'État" }
+];
+
+// Event listeners for checkboxes
+document.getElementById('president-show-button').addEventListener('change', function() {
+    document.getElementById('fresco_column_presidents').style.display = this.checked ? 'block' : 'none';
+});
+document.getElementById('pm-show-button').addEventListener('change', function() {
+    document.getElementById('fresco_column_pm').style.display = this.checked ? 'block' : 'none';
+});
+document.getElementById('tutelle-show-button').addEventListener('change', function() {
+    document.getElementById('fresco_column_tutelle').style.display = this.checked ? 'block' : 'none';
+});
+document.getElementById('delegue-show-button').addEventListener('change', function() {
+    document.getElementById('fresco_column_delegue').style.display = this.checked ? 'block' : 'none';
+});
+
+// Store references for later population
+const columnRefs = {};
+
+// Create columns
+columns.forEach((colDef, idx) => {
+    const col = document.createElement('div');
+    col.id = colDef.id;
+    col.style.position = 'relative';
+    col.style.height = rulerHeight + 'px';
+    col.style.flex = '1';
+    col.style.minWidth = '200px'; 
+    col.style.marginLeft = idx > 0 ? '16px' : '0';
+    if (idx > 0) col.style.marginLeft = '32px';
+
+    // Label as absolutely positioned, does not affect block positioning
+    const label = document.createElement('div');
+    label.textContent = colDef.label;
+    label.style.position = 'absolute';
+    label.style.top = '0';
+    label.style.left = '0';
+    label.style.width = '100%';
+    label.style.fontWeight = 'bold';
+    label.style.fontSize = '18px';
+    label.style.color = '#333';
+    label.style.padding = '4px 0 8px 16px';
+    label.style.background = '#fff';
+    label.style.borderBottom = '1px solid #ddd';
+    label.style.zIndex = '10';
+    label.style.pointerEvents = 'none';
+
+    col.appendChild(label);
+    columnsWrapper.appendChild(col);
+    columnRefs[colDef.id] = col;
+});
+
+// Add the columns wrapper to frescoContent
+frescoContent.appendChild(columnsWrapper);
+
+
+
+function createFrescoBlock(data) {
+    const yStart = getYPosition(data.start);
+    const yEnd = getYPosition(data.end);
+    const height = yEnd - yStart;
+    const borderColor = darkenColor(data.color, 20);
+
+    // Create block container
+    const block = document.createElement('div');
+    block.style.position = 'absolute';
+    block.style.top = yStart + 'px';
+    block.style.width = '100%';
+    block.style.height = height + 'px';
+    block.style.background = data.color;
+    block.style.color = '#fff';
+    block.style.display = 'flex';
+    block.style.flexDirection = 'column';
+    block.style.justifyContent = 'flex-start';
+    block.style.padding = '10px 12px 6px 16px';
+    block.style.fontFamily = 'inherit';
+    block.style.border = '2px solid ' + borderColor;
+    block.style.boxSizing = 'border-box';
+
+    //  New condition for opacity
+    if (data.intitule === 'Premier ministre') {
+        block.style.opacity = '0.3';
+    }
+
+    // Name (bold, larger)
+    const nameDiv = document.createElement('div');
+    nameDiv.textContent = data.name;
+    nameDiv.style.fontWeight = 'bold';
+    nameDiv.style.fontSize = '18px';
+    nameDiv.style.lineHeight = '1.2';
+    nameDiv.style.marginBottom = '2px';
+
+    // Intitulé (normal, smaller)
+    const intituleDiv = document.createElement('div');
+    intituleDiv.textContent = data.intitule;
+    intituleDiv.style.fontWeight = 'normal';
+    intituleDiv.style.fontSize = '14px';
+    intituleDiv.style.lineHeight = '1.2';
+    intituleDiv.style.marginBottom = '4px';
+
+    // Dates (small, just after)
+    const datesDiv = document.createElement('div');
+    datesDiv.textContent = data.start + " → " + data.end;
+    datesDiv.style.fontSize = '11px';
+    datesDiv.style.opacity = '0.85';
+    datesDiv.style.marginTop = '0';
+
+    // Assemble
+    block.appendChild(nameDiv);
+    block.appendChild(intituleDiv);
+    block.appendChild(datesDiv);
+
+    // Click to show more info
+    block.style.cursor = 'pointer';
+    block.addEventListener('click', () => openInfoDialog(data));
+
+    return block;
+}
+
+
+
+//import data from JSON files or define inline for testing
+
+// Global variables to store all loaded data
+let presidentsData = [];
+let primeMinistersData = [];
+let tutellesData = [];
+let deleguesSecretairesData = [];
+
+// Function to load JSON data from a file
+async function loadJSONData(filename) {
+    try {
+        const response = await fetch(filename);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status} for file: ${filename}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error loading JSON data from ${filename}:`, error);
+        return null;
+    }
+}
+
+// Main function to load all data
+async function loadAllData() {
+    try {
+        // Load leaders data
+        const leadersData = JSON.parse(document.getElementById('data_leaders').textContent);
+        if (leadersData) {
+            presidentsData = leadersData.presidents.map(president => ({
+                ...president,
+                type: 'president'
+            }));
+            
+            primeMinistersData = leadersData.primeMinisters.map(pm => ({
+                ...pm,
+                type: 'primeMinister'
+            }));
+        }
+        
+        // Load tutelles data
+        const tutellesDataRaw = JSON.parse(document.getElementById('data_tutelles').textContent);
+        if (tutellesDataRaw) {
+            tutellesData = tutellesDataRaw.tutelles.map(item => ({
+                ...item,
+                type: 'tutelle'
+            }));
+        }
+
+        // Load deleguesSecretaires data   data_delegues
+        const deleguesDataRaw = JSON.parse(document.getElementById('data_delegues').textContent);
+        if (deleguesDataRaw) {
+            deleguesSecretairesData = deleguesDataRaw.deleguesSecretaires.map(item => ({
+                ...item,
+                type: 'delegueSecretaire'
+            }));
+
+         }
+        
+        console.log('All data loaded successfully:', {
+            presidents: presidentsData,
+            primeMinisters: primeMinistersData,
+            tutelles: tutellesData,
+            deleguesSecretaires: deleguesSecretairesData
+        });
+        
+        return {
+            presidents: presidentsData,
+            primeMinisters: primeMinistersData,
+            tutelles: tutellesData,
+            deleguesSecretaires: deleguesSecretairesData
+        };
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+}
+
+function display_column(columnId, dataArray) {
+    const column = columnRefs[columnId];
+    if (!column) {
+        console.error(`Column with ID ${columnId} not found.`);
+        return;
+    }
+    // Clear existing blocks
+    column.innerHTML = column.querySelector('div').outerHTML; // Keep only the label
+
+    dataArray.forEach(data => {
+        const block = createFrescoBlock(data);
+        column.appendChild(block);
+    });
+}
+
+// Call this function when your page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadAllData().then(data => {
+        // Your visualization code can go here
+        // All data is now available:
+        // data.presidents, data.primeMinisters, data.tutelles, data.deleguesSecretaires
+        
+    
+
+
+display_column('fresco_column_presidents', data.presidents);
+display_column('fresco_column_pm', data.primeMinisters);
+display_column('fresco_column_tutelle', data.tutelles);
+display_column('fresco_column_delegue', data.deleguesSecretaires);
+
+
+});
+});
+
+
+
+</script>
+
+</body>
+
